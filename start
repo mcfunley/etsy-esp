@@ -1,0 +1,2 @@
+#! /bin/bash
+$HOME/maven/bin/mvn -Djetty.port=20280 jetty:run

@@ -1,0 +1,90 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+    <groupId>org.mortbay.jetty</groupId>
+    <artifactId>cometd-project</artifactId>
+    <version>6.1.20</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.mortbay.jetty</groupId>
+  <artifactId>cometd-demo</artifactId>
+  <packaging>war</packaging>
+  <name>Cometd :: Jetty :: Demo</name>
+
+  <build>
+    <defaultGoal>install</defaultGoal>
+    <plugins>
+      <plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-war-plugin</artifactId>
+	<version>2.0.2</version>
+	<configuration>
+	  <dependentWarExcludes>WEB-INF/web.xml
+	  </dependentWarExcludes>
+	  <overlays>
+	    <overlay />
+	  </overlays>
+	</configuration>
+      </plugin>
+      <plugin>
+	<groupId>org.mortbay.jetty</groupId>
+	<artifactId>maven-jetty-plugin</artifactId>
+	<version>${project.version}</version>
+	<configuration>
+	  <scanIntervalSeconds>2</scanIntervalSeconds>
+	  <contextPath>/</contextPath>
+	  <scanTargets>
+	    <scanTarget>src/main/webapp/WEB-INF/filters.json
+	    </scanTarget>
+	  </scanTargets>
+	  <scanTargetPatterns>
+	    <scanTargetPattern>
+	      <directory>src/main/java</directory>
+	      <includes>
+		<include>**/*.java</include>
+	      </includes>
+	    </scanTargetPattern>
+	  </scanTargetPatterns>
+	</configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>8.2-504.jdbc3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mortbay.jetty</groupId>
+      <artifactId>cometd-server</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.mortbay.jetty</groupId>
+      <artifactId>jetty</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-httpclient</groupId>
+      <artifactId>commons-httpclient</artifactId>
+          <version>3.1</version>
+    </dependency> 
+    <dependency>
+      <groupId>org.json</groupId>
+      <artifactId>json</artifactId>
+      <version>20080701</version>
+    </dependency> 
+    <dependency>
+      <groupId>org.mortbay.jetty</groupId>
+      <artifactId>jetty-sslengine</artifactId>
+      <version>${project.version}</version>
+      <scope>provided</scope>
+    </dependency>
+  </dependencies>
+</project>
